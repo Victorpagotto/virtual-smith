@@ -29,7 +29,7 @@ export interface IOrder extends INewOrder {
 export interface INewProduct {
   name: string
   amount: string
-  orderId: number
+  orderId?: number
 }
 
 export interface IProduct extends INewProduct {

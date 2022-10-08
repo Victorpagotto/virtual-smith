@@ -9,6 +9,10 @@ export default class ProductModels {
     this.db = connection;
   }
 
+  async create(): Promise<number> {
+    const [info] = await this.db.execute();
+  }
+
   async getAll(): Promise<IT.IProduct[]> {
     const [info] = await this.db
       .execute<(IT.IProduct & RowDataPacket)[]>('SELECT * FROM Trybesmith.Products');
