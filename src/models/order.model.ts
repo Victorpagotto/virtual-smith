@@ -19,13 +19,13 @@ export default class OrderMoodel {
       .execute<(IT.IOrder & RowDataPacket)[]>('SELECT * FROM Trybesmith.Orders');
     const orderList = await Promise
       .all(info.map(async (row: IT.IOrder): Promise<IT.IOrder> => {
-        const [ids] = await this.db
-          .execute<(number & RowDataPacket)[]>(`
-            SELECT id AS product_id 
+        const [idsObj] = await this.db
+          .execute<(Record<string, number> & RowDataPacket)[]>(`
+            SELECT id AS id 
             FROM Trybesmith.Products 
             WHERE orderId = ?`, [row.id]);
         const rowCopy: IT.IOrder = { ...row }; 
-        rowCopy.productsIds = [...ids];
+        rowCopy.productsIds = [...idsObj.map((idObj: Record<string, number>): number => idObj.id)];
         return rowCopy;
       }));
     return orderList;
