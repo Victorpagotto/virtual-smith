@@ -1,6 +1,7 @@
 import { JwtPayload } from 'jsonwebtoken';
 
 export interface INewUser {
+  [key: string]: unknown
   username: string
   classe: string
   level: number
@@ -12,6 +13,7 @@ export interface IUser extends INewUser{
 }
 
 export interface IUserSession {
+  [key: string]: unknown
   username: string
   classe: string
   level: number
@@ -19,6 +21,7 @@ export interface IUserSession {
 }
 
 export interface INewOrder {
+  [key: string]: unknown
   userId: number
 }
 
@@ -27,6 +30,7 @@ export interface IOrder extends INewOrder {
 }
 
 export interface INewProduct {
+  [key: string]: unknown
   name: string
   amount: string
   orderId?: number

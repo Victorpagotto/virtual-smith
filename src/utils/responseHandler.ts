@@ -18,6 +18,7 @@ export const statusCodes: StatusCodes = {
   BAD_REQUEST: 400,
   UNAUTHORIZED: 401,
   NO_CONTENT: 204,
+  UNPROCESSABLE: 422,
 };
 
 export default class ResponseHandler {

@@ -10,6 +10,14 @@ export default class ProductServices {
   constructor() {
     this.model = new ProductModels();
     this.handler = new ResponseHandler();
+    this.getAll = this.getAll.bind(this);
+    this.create = this.create.bind(this);
+  }
+
+  async create(product: IT.INewProduct): Promise<IResponse<IT.IProduct>> {
+    const id: number = await this.model.create(product);
+    const insertProduct: IT.IProduct = { id, ...product };
+    return this.handler.response<IT.IProduct>('CREATED', insertProduct);
   }
 
   async getAll(): Promise<IResponse<IT.IProduct[]>> {
