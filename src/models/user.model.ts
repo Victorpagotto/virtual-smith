@@ -3,7 +3,7 @@ import connection from './connection';
 import * as IT from '../interfaces';
 import infoHandler, { InfoHandlerReturn } from '../utils/infoHandler';
 
-export default class ProductModels {
+export default class UserModel {
   db: Pool;
 
   infoHandler: (info: Record<string, unknown>) => InfoHandlerReturn;
@@ -11,22 +11,15 @@ export default class ProductModels {
   constructor() {
     this.db = connection;
     this.infoHandler = infoHandler;
-    this.getAll = this.getAll.bind(this);
     this.create = this.create.bind(this);
   }
 
-  async create(product: IT.INewProduct): Promise<number> {
-    const { keys, values, placeHolders }: InfoHandlerReturn = this.infoHandler(product);
+  async create(userInfo: IT.INewUser): Promise<number> {
+    const { keys, values, placeHolders }: InfoHandlerReturn = this.infoHandler(userInfo);
     const [[inserId]] = await this.db
       .execute<RowDataPacket[]>(`
-        INSERT INTO Trybesmith.Products (${keys}) VALUES (${placeHolders})
-      `, [...values]);
+      INSERT INTO Trybesmith.Users (${keys}) VALUES (${placeHolders})
+    `, [...values]);
     return Number(inserId);
-  }
-
-  async getAll(): Promise<IT.IProduct[]> {
-    const [info] = await this.db
-      .execute<(IT.IProduct & RowDataPacket)[]>('SELECT * FROM Trybesmith.Products');
-    return info;
   }
 }
