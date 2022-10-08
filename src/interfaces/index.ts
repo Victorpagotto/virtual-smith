@@ -44,6 +44,6 @@ export interface AuthConfig {
   [key: string]: string
 }
 
-export interface JwtPayloadData extends JwtPayload {
-  data: IUserSession;
+export interface JwtPayloadData<T> extends JwtPayload {
+  data: T;
 }
