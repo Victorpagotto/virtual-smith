@@ -14,10 +14,16 @@ export interface IUser extends INewUser{
 
 export interface IUserSession {
   [key: string]: unknown;
+  id: number;
   username: string;
   classe: string;
   level: number;
-  token: string;
+}
+
+export interface ISession {
+  [key: string]: unknown;
+  username: string;
+  password: string;
 }
 
 export interface INewOrder {
