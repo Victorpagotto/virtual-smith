@@ -6,7 +6,7 @@ export default class ValidationProduct {
 
   amount: string;
 
-  message: string | undefined;
+  message: string;
 
   status: string;
 
@@ -16,7 +16,7 @@ export default class ValidationProduct {
     this.name = product ? product.name : '';
     this.amount = product ? product.amount : '';
     this.status = 'OK';
-    this.message = undefined;
+    this.message = '';
     this.handler = new ResponseHandler();
     this.nameExists = this.nameExists.bind(this);
     this.nameIsString = this.nameIsString.bind(this);
@@ -31,21 +31,21 @@ export default class ValidationProduct {
 
   private nameExists(): void {
     if (!this.name) {
-      this.message = '"name" is required"';
+      this.message = '"name" is required';
       this.status = 'BAD_REQUEST';
     }
   }
 
   private nameIsString(): void {
     if (typeof this.name !== 'string') {
-      this.message = '""name" must be a string"';
+      this.message = '"name" must be a string';
       this.status = 'UNPROCESSABLE';
     }
   }
 
   private nameBiggerThanTwoChar():void {
-    if (this.name.length < 2) {
-      this.message = '""name" length must be at least 3 characters long"';
+    if (this.name.length < 3) {
+      this.message = '"name" length must be at least 3 characters long';
       this.status = 'UNPROCESSABLE';
     }
   }
@@ -65,35 +65,46 @@ export default class ValidationProduct {
   }
 
   private amountBiggerThanTwoChar(): void {
-    if (this.amount.length < 2) {
+    if (this.amount.length < 3) {
       this.message = '"amount" length must be at least 3 characters long';
       this.status = 'UNPROCESSABLE';
     }
   }
 
   validateName(): boolean | void {
-    [this.nameExists, this.nameIsString, this.nameBiggerThanTwoChar]
-      .forEach((func: () => void) => {
-        func();
-        if (this.message) return true;
-      });
+    const funcs: (() => void)[] = [
+      this.nameExists,
+      this.nameIsString,
+      this.nameBiggerThanTwoChar,
+    ];
+    for (let i = 0; i < funcs.length; i += 1) {
+      funcs[i]();
+      if (this.message) return true;
+    }
   }
 
   validateAmount(): boolean | void {
-    [this.amountExists, this.amountIsString, this.amountBiggerThanTwoChar]
-      .forEach((func: () => void) => {
-        func();
-        if (this.message) return true;
-      });
+    const funcs: (() => void)[] = [
+      this.amountExists,
+      this.amountIsString,
+      this.amountBiggerThanTwoChar,
+    ];
+    for (let i = 0; i < funcs.length; i += 1) {
+      funcs[i]();
+      if (this.message) return true;
+    }
   }
 
   validate(): IResponse<string> | boolean {
-    [this.validateName, this.validateAmount]
-      .forEach((func: () => boolean | void) => {
-        if (func()) {
-          return this.handler.response(this.status, this.message);
-        }
-      });
+    const funcs: (() => boolean | void)[] = [
+      this.validateName,
+      this.validateAmount,
+    ];
+    for (let i = 0; i < funcs.length; i += 1) {
+      if (funcs[i]()) {
+        return this.handler.response<string>(this.status, this.message);
+      }
+    }
     return false;
   }
 }
