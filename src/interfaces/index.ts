@@ -1,4 +1,5 @@
 import { JwtPayload } from 'jsonwebtoken';
+import { Request } from 'express';
 
 export interface INewUser {
   [key: string]: unknown;
@@ -29,12 +30,18 @@ export interface ISession {
 export interface INewOrder {
   [key: string]: unknown;
   userId?: number;
+  productsIds?: number[];
+}
+
+export interface ICreateOrder {
+  [key: string]: unknown;
+  userId: number;
+  productsIds: number[];
 }
 
 export interface IOrder extends INewOrder {
   id: number;
   userId: number;
-  productsIds?: number[];
 }
 
 export interface INewProduct {
@@ -54,4 +61,12 @@ export interface AuthConfig {
 
 export interface JwtPayloadData<T> extends JwtPayload {
   data: T;
+}
+
+export interface IRequest extends Request {
+  user: IUserSession;
+}
+
+export interface ProdIds {
+  productsIds: number[]
 }

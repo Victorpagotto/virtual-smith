@@ -1,4 +1,4 @@
-import { Pool, RowDataPacket } from 'mysql2/promise';
+import { Pool, ResultSetHeader, RowDataPacket } from 'mysql2/promise';
 import connection from './connection';
 import * as IT from '../interfaces';
 import infoHandler, { InfoHandlerReturn } from '../utils/infoHandler';
@@ -18,11 +18,11 @@ export default class UserModel {
 
   async create(userInfo: IT.INewUser): Promise<number> {
     const { keys, values, placeHolders }: InfoHandlerReturn = this.infoHandler(userInfo);
-    const [[inserId]] = await this.db
-      .execute<RowDataPacket[]>(`
+    const [{ insertId }] = await this.db
+      .execute<ResultSetHeader>(`
       INSERT INTO Trybesmith.Users (${keys}) VALUES (${placeHolders})
     `, [...values]);
-    return Number(inserId);
+    return Number(insertId);
   }
 
   async getById(id: number): Promise<IT.IUserSession> {

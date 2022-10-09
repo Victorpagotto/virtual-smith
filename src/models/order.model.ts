@@ -1,4 +1,4 @@
-import { Pool, RowDataPacket } from 'mysql2/promise';
+import { Pool, ResultSetHeader, RowDataPacket } from 'mysql2/promise';
 import connection from './connection';
 import * as IT from '../interfaces';
 import infoHandler, { InfoHandlerReturn } from '../utils/infoHandler';
@@ -12,6 +12,7 @@ export default class OrderMoodel {
     this.db = connection;
     this.infoHandler = infoHandler;
     this.getAll = this.getAll.bind(this);
+    this.create = this.create.bind(this);
   }
 
   async getAll(): Promise<IT.IOrder[]> {
@@ -29,5 +30,19 @@ export default class OrderMoodel {
         return rowCopy;
       }));
     return orderList;
+  }
+
+  async create(order: IT.ICreateOrder): Promise<IT.ICreateOrder> {
+    const UId: number = order.userId;
+    const prodIds: number[] = order.productsIds;
+    const [{ insertId }] = await this.db
+      .execute<(ResultSetHeader)>('INSERT INTO Trybesmith.Orders (userId) VALUES (?)', [UId]);
+    await Promise.all(prodIds.map(async (prodId: number): Promise<boolean> => {
+      await this.db.execute(`UPDATE Trybesmith.Products
+      SET orderId = ?
+      WHERE Trybesmith.Products.id = ?`, [insertId, prodId]);
+      return true;
+    }));
+    return { userId: UId, productsIds: [...prodIds] };
   }
 }
