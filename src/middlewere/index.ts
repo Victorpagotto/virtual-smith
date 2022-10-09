@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
 import Authetificator from '../authentication/JWT';
 import * as IT from '../interfaces';
 import ResponseHandler, { IResponse } from '../utils/responseHandler';
@@ -33,4 +33,8 @@ export default class Middlewere {
       return res.status(status).json(result);
     }
   };
+
+  errorHandler: ErrorRequestHandler = async (_err, req, res, _next): Promise<Response> => (
+    res.status(500).json('Internal server error.')
+  );
 }
