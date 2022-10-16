@@ -50,10 +50,8 @@
 
 <h3 align="center">Description</h3>
 
-<p align="justify"></p>
-<p align="justify"></p>
-<p align="justify"></p>
-<p align="justify"></p>
+<p align="justify">A project built over 2 days using Typescript. The aiming was to create a CRUD API using Express to access a database that would correspond to the order control of a blacksmith, who carries out his orders in a artisanal way, assigning orders to products, instead of products to orders. The API uses JWT encryption for access control, and the MySQL database to manage data, having been built on top of MSC (model, service and controller) concepts to make the code as little coupled as possible; and RESTFUL - for creating the handling of information safely and efficiently.</p>
+<p align="justify">The code made with classes, being object-oriented and using the concepts of encapsulation and inheritance mainly. The main learning target was the use of Typescript and its typing, and I particularly decided to also try the use of object orientation. As my first project using Typescript, I realize that there are many things to improve, especially when it comes to the organization of the interfaces' code; however, the API is fully functional and a lot of learning has been taken from its making process.</p>
 
 -----------------------
 
