@@ -1,17 +1,17 @@
 <h1 align="center">🚧 Em construção 🚧</h1>
 
-<h1 align="center">Trivia em React</h1>
+<h1 align="center">Virtual Smitht</h1>
 
 <h2 align="center">Português</h2>
 
 
-**Nome**: Trivia em React
+**Nome**: Ferreiro Virtual
 
-**Conhecimentos Usados**: React, CSS, HTML, Javascript, Jest, Redux e RTL.
+**Conhecimentos Usados**: Typescript.
 
-**Ferramentas usadas**: ESLint, Google Fonts, Trivia API e Gravatar API.
+**Ferramentas usadas**: Node.js, JWT, Express e MySQL.
 
-**Número de Pessoas**: 4.
+**Número de Pessoas**: 1 (sozinho).
 
 -----------------------
 
@@ -40,13 +40,13 @@
 <h2 align="center">English</h2>
 
 
-**Name**: Trivia in React
+**Name**: Virtual Smith
 
-**Used Knowledges**: React, CSS, HTML, Javascript, Jest, Redux and RTL.
+**Used Knowledges**: Typescript.
 
-**Used Tools**: ESLint, Google Fonts, Trivia API and Gravatar API.
+**Used Tools**: Node.js, JWT, Express and MySQ.
 
-**Number of People**: 4.
+**Number of People**: 1 (solo).
 
 -----------------------
 
