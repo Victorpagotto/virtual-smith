@@ -17,10 +17,8 @@
 
 <h3 align="center">Descrição</h3>
 
-<p align="justify"></p>
-<p align="justify"></p>
-<p align="justify"></p>
-<p align="justify"></p>
+<p align="justify">Um projeto construído ao longo de 2 dias utilizando Typescript. Seu objetivo é a criação de uma API CRUD através de Express para acessar um banco de dados que seria correspondente ao controle de pedidos de um ferreiro, o qual realiza seus pedidos de forma artesanal, atribuindo pedidos a produtos, ao invés de produtos a pedidos. A API utiliza criptografia JWT para o controle de acesso, e o banco de dados MySQL para gerenciar as informações, tendo sido construída em cima de conceitos MSC (model, service e controller) para tornar o código o menos acoplado possível, e RESTFUL - para tornar o manejo de informações seguro e eficiente.</p>
+<p align="justify">O código foi construído com classes, sendo orientado a objetos, utilizando-se dos conceitos de encapsulamento e herança principalmente. O principal alvo de aprendizado era o uso de Typescript e sua tipagem, tendo eu particularmente decidido também tentar o uso de orientação a objetos. Como meu primeiro projeto em Typescript, percebo haver coisas a melhorar, principalmente no que tange a organização do código de interfaces; entretanto, a API é completamente funcional e muito aprendizado foi retirado de sua criação.</p>
 
 -----------------------
 
