@@ -1,5 +1,3 @@
-<h1 align="center">🚧 Em construção 🚧</h1>
-
 <h1 align="center">Virtual Smitht</h1>
 
 <h2 align="center">Português</h2>
