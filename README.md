@@ -62,6 +62,6 @@
 -----------------------
 
 <h3 align="center">How to Install</h3>
-<p align="justify">For the project to properly work, it's necessary to have installed Node.js and Git. After that, just clone the repository and run the command "npm install" within the project's folder. To start the project, have port 3000 open on your computer's localhost, then run the command "npm start", also within the project's folder, for the page to be open in your browser. There is available, in the src/db folder, a file to generate a database in the project's molds.</p>
+<p align="justify">In order to use this API on your computer, you will need to have both Node.js and the MySQL database server installed, having them working properly. Fill in the system variables in the .env, removing the .example, thus making them active through the dotenv library by the project. Before starting the project, install the dependencies with "npm install" and then use the standard "npm start" command. There is available, in the src/db folder, a file to generate a database with the project's structure.</p>
 
 -----------------------
